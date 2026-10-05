@@ -225,6 +225,28 @@ Then restart Claude Code. Your project learning notes stay intact; no reset is n
 Run `claude plugin list` to check the installed version.
 [More about plugin updates](https://code.claude.com/docs/en/discover-plugins#keep-plugins-updated).
 
+## Using it with Pi
+
+This fork also runs in the [Pi coding agent](https://pi.dev). The Pi port in
+`pi/` reuses the plugin's own skills, guides, and Python helpers unchanged, so
+both hosts share one set of learning notes in `.vibe-wise/`.
+
+```sh
+pi install git:github.com/lducc/vibe-wise
+```
+
+Start Pi in your project and run `/vibe-wise:learn` or `/vibe-wise:reset`.
+An `AskUserQuestion` tool gives onboarding and confirmations the same arrow-key
+picker; in print and RPC modes the guides fall back to plain-text questions.
+
+The extension runs `hooks/session_start.py` on startup, resume, new session,
+fork, and compaction, matching the Claude Code hook. Pi delivers the restored
+context with your next message, or before the next model call when compaction
+happens mid-run. Update with `pi update git:github.com/lducc/vibe-wise`.
+
+`pi/e2e_rpc.py` drives Pi over RPC to check commands, restoration on each
+session event, pause handling, and auto-compaction. It calls a real model.
+
 ## License
 
 [MIT](LICENSE). You can use, modify, and share this software, including commercially. Keep the license notice with copies. The software comes without a warranty.

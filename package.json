@@ -1,0 +1,12 @@
+{
+  "name": "vibe-wise",
+  "version": "0.1.43",
+  "private": true,
+  "description": "VibeWise for Claude Code and the Pi coding agent.",
+  "license": "MIT",
+  "keywords": ["pi-package"],
+  "pi": {
+    "extensions": ["./pi/index.ts", "./pi/ask-user-question.ts"],
+    "skills": []
+  }
+}
